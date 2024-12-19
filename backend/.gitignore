@@ -1,0 +1,44 @@
+# Node.js dependencies
+/node_modules/
+
+# npm logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.* 
+
+# Build output
+/dist
+/build
+
+# Logs
+*.log
+
+# Dependency directories
+bower_components/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+
+# Test coverage reports
+coverage/
+
+# Runtime files
+pids/
+*.seed
+
+# Miscellaneous
+*.tgz
+
+
+# package.json/
+package-lock.json/
+registerMail.js

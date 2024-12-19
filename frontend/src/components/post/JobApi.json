@@ -1,0 +1,63 @@
+
+  [
+    {
+      "id": 1,
+      "postedTime": "3 hours ago",
+      "title": "Frontend Developer",
+      "pricing": {
+        "type": "Hourly",
+        "amount": "$50",
+        "duration": "3 months"
+      },
+      "description": "Job Description: We are looking for a skilled Frontend Developer to join our team. You will be responsible for building the client-side of our web applications.",
+      "skills": ["JavaScript", "React", "CSS"],
+      "rating": {
+        "stars": 4,
+        "userTotalSpent": "$2000"
+      },
+      "location": "USA",
+      "company": "Tech Solutions",
+      "employmentType": "Contract",
+      "applicationDeadline": "2023-12-31"
+    },
+    {
+      "id": 2,
+      "postedTime": "1 day ago",
+      "title": "Backend Developer",
+      "pricing": {
+        "type": "Hourly",
+        "amount": "$60",
+        "duration": "6 months"
+      },
+      "description": "Job Description: We are seeking a Backend Developer to help us build scalable applications. You will work closely with the frontend team to integrate APIs.",
+      "skills": ["Node.js", "Express", "MongoDB"],
+      "rating": {
+        "stars": 5,
+        "userTotalSpent": "$5000"
+      },
+      "location": "Remote",
+      "company": "Innovatech",
+      "employmentType": "Full-time",
+      "applicationDeadline": "2024-01-15"
+    },
+    {
+      "id": 3,
+      "postedTime": "2 days ago",
+      "title": "UI/UX Designer",
+      "pricing": {
+        "type": "Fixed",
+        "amount": "$3000",
+        "duration": "1 month"
+      },
+      "description": "Job Description: We are looking for a creative UI/UX Designer to help us enhance user experience across our platforms. You will be responsible for designing user interfaces.",
+      "skills": ["Figma", "Adobe XD", "User  Research"],
+      "rating": {
+        "stars": 4,
+        "userTotalSpent": "$1500"
+      },
+      "location": "Canada",
+      "company": "Design Co.",
+      "employmentType": "Part-time",
+      "applicationDeadline": "2024-02-01"
+    }
+  ]
