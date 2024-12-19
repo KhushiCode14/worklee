@@ -3,7 +3,7 @@ import { GoPencil } from "react-icons/go";
 
 const SidebarProfile = () => {
   return (
-    <div className="h-auto p-6 m-0 border-gray-500 border-t border-r w-full rounded-md">
+    <div className="h-auto p-6 m-0 border-gray-500 border-t border-r w-full rounded-md ">
       <div>
         {/* view profile */}
         <div className="flex justify-between h-auto text-black items-center border-b border-gray-600 w-full p-5">
