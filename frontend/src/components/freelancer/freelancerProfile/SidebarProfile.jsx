@@ -3,118 +3,114 @@ import { GoPencil } from "react-icons/go";
 
 const SidebarProfile = () => {
   return (
-    <div className="h-auto p-6 m-0 border-gray-500 border-t border-r w-full rounded-md ">
-      <div>
-        {/* view profile */}
-        <div className="flex justify-between h-auto text-black items-center border-b border-gray-600 w-full p-5">
-          <p className="text-xl"> View Profile</p>
-          <div className="flex gap-2 ">
-            <FaPlus
-              size={30}
-              color="green"
-              className="rounded-full border border-green-600 p-2"
-            />
-            <GoPencil
-              size={30}
-              color="green"
-              className="rounded-full border border-green-600 p-2"
-            />
-          </div>
-        </div>
-        {/* earning hours */}
-        <div className="fl   border-gray-600 w-full p-5 border-b">
-          <div className="text-xl text-black">Total earning</div>
-          <div className="text-xl text-black">total jobs</div>
-          <div className="text-xl text-black">total hours</div>
-        </div>
-        {/* connects related */}
-        <div className="flex   border-gray-600 w-full p-5 border-b flex-col gap-2">
-          <div className="text-xl text-black">Connects 5</div>
-          <div>
-            <button className="py-2 font-bold text-green-600">Connect</button>
-            <button className="py-2 font-bold text-green-600 ">
-              Buy connects
-            </button>
-          </div>
-        </div>
-      </div>
-      {/* hour */}
-      <div className="flex justify-between h-auto  border-gray-600 w-full p-5 border-b">
-        <p className="text-black text-xl"> Hour per week</p>
-        <div className="flex gap-2 ">
+    <div className="w-full p-6 bg-white rounded-md shadow-lg md:w-full lg:w-full xl:w-full">
+      {/* Profile Header */}
+      <div className="flex items-center justify-between pb-4 border-b border-gray-200">
+        <h2 className="text-2xl font-semibold text-gray-700">View Profile</h2>
+        <div className="flex items-center gap-2">
           <FaPlus
             size={30}
-            color="green"
-            className="rounded-full border border-green-600 p-2"
+            className="p-2 text-green-600 bg-green-100 rounded-full cursor-pointer hover:bg-green-200"
           />
           <GoPencil
             size={30}
-            color="green"
-            className="rounded-full border border-green-600 p-2"
+            className="p-2 text-green-600 bg-green-100 rounded-full cursor-pointer hover:bg-green-200"
           />
         </div>
       </div>
-      {/* language */}
-      <div className="flex justify-between h-auto   border-gray-600 w-full p-5 border-b">
-        <p className="text-black text-xl"> Languages</p>
-        <div className="flex gap-2 ">
+
+      {/* Earnings Section */}
+      <div className="py-4 border-b border-gray-200">
+        <h3 className="text-xl font-medium text-gray-700">Total Earnings</h3>
+        <p className="mt-1 text-sm text-gray-500">
+          Details about your earnings, jobs, and hours worked.
+        </p>
+      </div>
+
+      {/* Connects Section */}
+      <div className="flex items-center justify-between py-4 border-b border-gray-200">
+        <h3 className="text-xl font-medium text-gray-700">Connects</h3>
+        <div className="flex gap-2">
+          <button className="text-sm font-medium text-green-600 hover:underline">
+            Connect
+          </button>
+          <button className="text-sm font-medium text-green-600 hover:underline">
+            Buy Connects
+          </button>
+        </div>
+      </div>
+
+      {/* Hourly Section */}
+      <div className="flex items-center justify-between py-4 border-b border-gray-200">
+        <h3 className="text-xl font-medium text-gray-700">Hours Per Week</h3>
+        <div className="flex items-center gap-2">
           <FaPlus
             size={30}
-            color="green"
-            className="rounded-full border border-green-600 p-2"
+            className="p-2 text-green-600 bg-green-100 rounded-full cursor-pointer hover:bg-green-200"
           />
           <GoPencil
             size={30}
-            color="green"
-            className="rounded-full border border-green-600 p-2"
+            className="p-2 text-green-600 bg-green-100 rounded-full cursor-pointer hover:bg-green-200"
           />
         </div>
       </div>
-      {/* verification */}
-      <div className="flex justify-between h-auto   border-gray-600 w-full p-5 border-b">
-        <p className="text-black text-xl"> Verification</p>
-        <div className="flex gap-2 ">
+
+      {/* Languages Section */}
+      <div className="flex items-center justify-between py-4 border-b border-gray-200">
+        <h3 className="text-xl font-medium text-gray-700">Languages</h3>
+        <div className="flex items-center gap-2">
           <FaPlus
             size={30}
-            color="green"
-            className="rounded-full border border-green-600 p-2"
+            className="p-2 text-green-600 bg-green-100 rounded-full cursor-pointer hover:bg-green-200"
           />
           <GoPencil
             size={30}
-            color="green"
-            className="rounded-full border border-green-600 p-2"
+            className="p-2 text-green-600 bg-green-100 rounded-full cursor-pointer hover:bg-green-200"
           />
         </div>
       </div>
-      {/* education */}
-      <div className="flex justify-between h-auto   border-gray-600 w-full p-5 border-b">
-        <p className="text-black text-xl"> Education</p>
-        <div className="flex gap-2 ">
+
+      {/* Verification Section */}
+      <div className="flex items-center justify-between py-4 border-b border-gray-200">
+        <h3 className="text-xl font-medium text-gray-700">Verification</h3>
+        <div className="flex items-center gap-2">
           <FaPlus
             size={30}
-            color="green"
-            className="rounded-full border border-green-600 p-2"
+            className="p-2 text-green-600 bg-green-100 rounded-full cursor-pointer hover:bg-green-200"
           />
           <GoPencil
             size={30}
-            color="green"
-            className="rounded-full border border-green-600 p-2"
+            className="p-2 text-green-600 bg-green-100 rounded-full cursor-pointer hover:bg-green-200"
           />
         </div>
       </div>
-      {/* links */}
-      <div className="flex justify-between h-auto   border-gray-600 w-full p-5 border-b">
-        <p className="text-black text-xl">Linked accounts </p>
-        <div className="flex gap-2 ">
+
+      {/* Education Section */}
+      <div className="flex items-center justify-between py-4 border-b border-gray-200">
+        <h3 className="text-xl font-medium text-gray-700">Education</h3>
+        <div className="flex items-center gap-2">
           <FaPlus
             size={30}
-            color="green"
-            className="rounded-full border border-green-600 p-2"
+            className="p-2 text-green-600 bg-green-100 rounded-full cursor-pointer hover:bg-green-200"
           />
           <GoPencil
             size={30}
-            color="green"
-            className="rounded-full border border-green-600 p-2"
+            className="p-2 text-green-600 bg-green-100 rounded-full cursor-pointer hover:bg-green-200"
+          />
+        </div>
+      </div>
+
+      {/* Linked Accounts Section */}
+      <div className="flex items-center justify-between py-4">
+        <h3 className="text-xl font-medium text-gray-700">Linked Accounts</h3>
+        <div className="flex items-center gap-2">
+          <FaPlus
+            size={30}
+            className="p-2 text-green-600 bg-green-100 rounded-full cursor-pointer hover:bg-green-200"
+          />
+          <GoPencil
+            size={30}
+            className="p-2 text-green-600 bg-green-100 rounded-full cursor-pointer hover:bg-green-200"
           />
         </div>
       </div>

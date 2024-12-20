@@ -1,9 +1,8 @@
-import { FaBell } from "react-icons/fa6";
+import { FaBell, FaSearch, FaBars } from "react-icons/fa";
 import { MdQuestionMark } from "react-icons/md";
 import Nav from "../ui/Nav";
 import FindWork from "./freelancerNavbar/FindWork";
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
 
 const FreelancerNav = () => {
   const label = {
@@ -12,36 +11,54 @@ const FreelancerNav = () => {
     manage: "Manage Finance",
     message: "Messages",
   };
-  const [dropdown, setDropdonwn] = useState({});
+
+  const [dropdown, setDropdown] = useState({});
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState(""); // Track active menu/search
+
   const handleDropdownClick = (key) => {
-    setDropdonwn((prev) => ({
+    setDropdown((prev) => ({
       ...prev,
       [key]: !prev[key], // Toggle the specific dropdown
     }));
   };
-  const handleMouseOver = (key) => {
-    setDropdonwn((prev) => ({
-      ...prev,
-      [key]: true,
-    }));
-  };
-  const handleOut = (key) => {
-    setDropdonwn((prev) => ({
-      ...prev,
-      [key]: false,
-    }));
-  };
 
   return (
-    <div className="flex flex-col items-center justify-between w-full px-4 py-2 sm:flex-row sm:px-8 lg:px-16">
-      <div className="flex flex-col items-center w-full sm:flex-row sm:gap-6">
+    <div className="w-full px-4 py-2 sm:px-8 lg:px-16">
+      <div className="flex items-center justify-between">
+        {/* Logo */}
         <Nav />
-        <ul className="flex flex-wrap gap-3 mt-3 text-black sm:gap-6 sm:mt-0">
+
+        {/* Mobile: Hamburger Menu and Search */}
+        <div className="flex items-center gap-4 sm:hidden">
+          <FaSearch
+            size={25}
+            className="cursor-pointer"
+            onClick={() =>
+              setActiveSection(activeSection === "search" ? "" : "search")
+            }
+          />
+          <FaBars
+            size={30}
+            className="cursor-pointer"
+            onClick={() =>
+              setActiveSection(activeSection === "menu" ? "" : "menu")
+            }
+          />
+        </div>
+
+        {/* Desktop: Full Navigation */}
+        <ul className="hidden gap-6 text-black sm:flex sm:flex-wrap">
           {Object.keys(label).map((key) => (
             <li
               className="cursor-pointer"
-              onMouseOver={() => handleMouseOver(key)}
-              onMouseOut={() => handleOut(key)}
+              onMouseOver={() =>
+                setDropdown((prev) => ({ ...prev, [key]: true }))
+              }
+              onMouseOut={() =>
+                setDropdown((prev) => ({ ...prev, [key]: false }))
+              }
               key={key}
             >
               <button
@@ -50,23 +67,44 @@ const FreelancerNav = () => {
               >
                 {label[key]}
               </button>
-              <li>{dropdown[key] && key === "work" && <FindWork />}</li>
-              <li>{dropdown[key] && key === "deliver" && <FindWork />}</li>
+              {dropdown[key] && key === "work" && <FindWork />}
             </li>
           ))}
         </ul>
+
+        {/* Icons */}
+        <div className="items-center hidden gap-4 sm:flex">
+          <MdQuestionMark size={20} color="black" />
+          <FaBell size={20} color="black" />
+          <img src="" alt="Avatar" className="w-8 h-8 rounded-full avatar" />
+        </div>
       </div>
-      <div className="flex flex-col items-center gap-4 mt-4 sm:flex-row sm:gap-6 sm:mt-0">
-        {/* Search bar */}
-        <div className="flex items-center justify-center">
+
+      {/* Mobile: Render Active Sections */}
+      {activeSection === "menu" && (
+        <div className="flex flex-col mt-4">
+          {Object.keys(label).map((key) => (
+            <button
+              key={key}
+              className="px-4 py-2 text-left border-b border-gray-200"
+              onClick={() => handleDropdownClick(key)}
+            >
+              {label[key]}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {activeSection === "search" && (
+        <div className="flex items-center justify-center mt-4">
           <label
             htmlFor="search"
-            className="flex items-center w-full p-2 text-gray-800 border border-gray-700 rounded-3xl sm:w-auto"
+            className="flex items-center w-full p-2 text-gray-800 border border-gray-700 rounded-3xl"
           >
             <FaSearch className="pr-2" size={25} />
             <input
               type="search"
-              className="w-full bg-transparent outline-none sm:w-36"
+              className="w-full bg-transparent outline-none"
               id="search"
               placeholder="Search"
             />
@@ -77,14 +115,7 @@ const FreelancerNav = () => {
             </select>
           </label>
         </div>
-
-        {/* Icons */}
-        <div className="flex items-center gap-4">
-          <MdQuestionMark size={20} color="black" />
-          <FaBell size={20} color="black" />
-          <img src="" alt="Avatar" className="w-8 h-8 rounded-full avatar" />
-        </div>
-      </div>
+      )}
     </div>
   );
 };
