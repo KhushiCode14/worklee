@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "../../pages/Header";
 import Navbar from "../../pages/Navbar";
+import Footer from "../../pages/Footer";
 
 const HomeLayout = () => {
   // const scrollYProgress = useScroll();
@@ -11,6 +12,7 @@ const HomeLayout = () => {
       <main className="flex-1">
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 };
