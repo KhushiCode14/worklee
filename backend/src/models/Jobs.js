@@ -57,6 +57,10 @@ const JobSchema = new Schema(
       ref: "User",
       required: true,
     },
+    freelancer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
     duration: {
       type: String,
       required: true,

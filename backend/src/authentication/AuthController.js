@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import config from "../config/config.js";
 const RegisterController = async (req, res) => {
   console.log(req.body);
   const { name, email, password, role } = req.body;
@@ -32,9 +33,9 @@ const RegisterController = async (req, res) => {
 
 const LoginController = async (req, res) => {
   const { email, password, role } = req.body;
-  if (!email || !password || !role) {
-    return res.status(400).json({ message: "All fields are required" });
-  }
+  // if (!email || !password || !role) {
+  //   return res.status(400).json({ message: "All fields are required" });
+  // }
   try {
     const user = await User.findOne({ email });
     if (!user) {
@@ -49,8 +50,8 @@ const LoginController = async (req, res) => {
     // }
     // match password
     // const token = jwt.sign(user);
-    const payload = { id: user._id, name: user.name }; // Add user information in the payload
-    const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, {
+    const payload = { id: user._id, name: user.name, role: user.role }; // Add user information in the payload
+    const token = jwt.sign(payload, config.jwt_secret, {
       expiresIn: "1h",
     }); // Token expires in 1 hour
     console.log("login");

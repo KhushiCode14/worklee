@@ -1,7 +1,28 @@
+import { jwtDecode } from "jwt-decode";
+import { useEffect } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { GoPencil } from "react-icons/go";
+import { useSelector } from "react-redux";
 
 const SidebarProfile = () => {
+  // const token = useSelector((state) => state.auth.token);
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    if (token) {
+      console.log(token);
+
+      try {
+        const decode = jwtDecode(token);
+        console.log("decoed token: " + decode);
+        const id = decode.id;
+        console.log("id:", id);
+      } catch (error) {
+        console.error("Error decoding token: ", error);
+      }
+    } else {
+      console.log("no token");
+    }
+  });
   return (
     <div className="w-full p-6 bg-white rounded-md shadow-lg md:w-full lg:w-full xl:w-full">
       {/* Profile Header */}

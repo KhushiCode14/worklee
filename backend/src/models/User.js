@@ -21,6 +21,16 @@ const userSchema = new Schema({
     enum: ["freelancer", "client"],
     default: "freelancer",
   },
+  // for freelancers
+  jobsApply: {
+    type: [String],
+    default: [],
+  },
+  // for clients
+  jobsPosted: {
+    type: [String],
+    default: [],
+  },
   country: {
     type: String,
   },

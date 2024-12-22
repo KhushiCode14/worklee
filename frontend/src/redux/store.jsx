@@ -1,12 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./auth/authSlice";
-import formReducer from "./auth/formSlice";
+// import counterReducer from "./slices/countSlice";
+import rootReducer from "./reducers/rootReducer";
 const store = configureStore({
   // Define your reducers here
-  reducer: {
-    auth: authReducer,
-    form: formReducer,
-  },
+  reducer: rootReducer,
+  // count: counterReducer,
 });
 
 export default store;
