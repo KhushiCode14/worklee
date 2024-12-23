@@ -27,6 +27,20 @@ const userSchema = new Schema({
     enum: ["freelancer", "client"],
     default: "freelancer",
   },
+  freelancerDetails: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Freelancer",
+    required: function () {
+      return this.role === "freelancer";
+    }, // Conditionally required based on role
+  },
+  clientDetails: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Client",
+    // required: function () {
+    //   return this.role === "client";
+    // }, // Conditionally required based on role
+  },
   country: {
     type: String,
   },

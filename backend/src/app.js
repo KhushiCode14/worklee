@@ -3,6 +3,7 @@ import AuthRoutes from "./authentication/AuthRoutes.js";
 import JobRoutes from "./jobs/JobsRoutes.js";
 import cors from "cors";
 import ClientRoutes from "./clients/clientsRoutes.js";
+import FreelancerRoutes from "./freelancer/freelancerRoutes.js";
 const app = express();
 app.use(
   cors({
@@ -17,5 +18,6 @@ app.use(express.json());
 console.log("app run");
 app.use("/auth", AuthRoutes);
 app.use("/client", ClientRoutes);
+app.use("/freelancer", FreelancerRoutes);
 app.use("/api", JobRoutes);
 export default app;

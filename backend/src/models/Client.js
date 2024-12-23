@@ -13,7 +13,7 @@ const ClientSchema = new Schema(
     // company name
     companyName: {
       type: String,
-      required: true,
+      unique: true,
     },
     // job posted by client
     jobPostedByClient: {

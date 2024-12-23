@@ -10,7 +10,6 @@
 
 import mongoose from "mongoose";
 const { Schema } = mongoose;
-
 const JobSchema = new Schema(
   {
     title: {
