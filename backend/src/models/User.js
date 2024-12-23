@@ -1,3 +1,9 @@
+// strategy
+// ^ basic detail - both for client and freelancer
+// name email passsword role country dob street address city provinces phone zip
+
+// jobApply jobPosted
+
 import mongoose from "mongoose";
 
 const { Schema } = mongoose;
@@ -21,18 +27,23 @@ const userSchema = new Schema({
     enum: ["freelancer", "client"],
     default: "freelancer",
   },
-  // for freelancers
-  jobsApply: {
-    type: [String],
-    default: [],
-  },
-  // for clients
-  jobsPosted: {
-    type: [String],
-    default: [],
-  },
   country: {
     type: String,
+  },
+  state: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  streetAddress: {
+    type: String,
+  },
+  zip: {
+    type: Number,
+  },
+  dob: {
+    type: Date,
   },
   isActive: {
     type: Boolean,
@@ -43,3 +54,18 @@ const userSchema = new Schema({
 const User = mongoose.model("User", userSchema);
 
 export default User;
+
+// // For freelancers
+// jobsApply: [
+//   {
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: "Job", // References the Job model
+//   },
+// ],
+// // For clients
+// jobsPosted: [
+//   {
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: "User", // References the Job model
+//   },
+// ],

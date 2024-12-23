@@ -1,3 +1,13 @@
+//^ job details
+//  title skiils require
+// scope: large medium small
+// long time :1 to 3 months ,3 to 6 months , more than 6
+// level of experience: entry,intermediate,expert
+// contract-to-hire: yes(full time),no
+// budget: [hourly ,fixed], amount[min, max]
+// descripiton:
+// attachments:(max 100mb)
+
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
@@ -7,65 +17,25 @@ const JobSchema = new Schema(
       type: String,
       required: true,
     },
-    description: {
-      type: String,
-      required: true,
-    },
-    location: {
-      type: String,
-      required: true,
-    },
-    projectType: {
-      type: String,
-      required: true,
-      enum: ["Web Development", "Mobile App Development", "Design", "Other"], // Example values
-    },
     skills: {
       type: [String], // Allow multiple skills
       required: true,
     },
-    category: {
+    scope: {
       type: String,
-      required: true,
-    },
-    // razopay
-    connectionRequired: {
-      type: Boolean, // Use boolean for true/false values
-      required: true,
-    },
-    status: {
-      type: String,
-      required: true,
-      enum: ["open", "closed"],
-      default: "open",
-    },
-    proposals_count: {
-      type: Number,
-      default: 0,
-    },
-    // cloudinary and multer
-    attachments: {
-      type: [String],
-    },
-    tags: {
-      type: [String], // Allow multiple tags
-      required: true,
-    },
-
-    client: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-    freelancer: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      enum: ["large", "medium", "small"],
     },
     duration: {
       type: String,
       required: true,
     },
-    //
+    levelOfExperience: {
+      type: String,
+      enum: ["entry", "intermediate", "expert"],
+    },
+    contractToHire: {
+      type: Boolean,
+    },
     budget: {
       type: {
         type: String,
@@ -82,6 +52,46 @@ const JobSchema = new Schema(
         max: { type: Number },
       },
     },
+    description: {
+      type: String,
+      required: true,
+    },
+    attachments: {
+      type: [String],
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    connectionRequired: {
+      type: Boolean, // Use boolean for true/false values
+      required: true,
+    },
+    status: {
+      type: String,
+      required: true,
+      enum: ["open", "closed"],
+      default: "open",
+    },
+    proposals_count: {
+      type: Number,
+      default: 0,
+    },
+    tags: {
+      type: [String], // Allow multiple tags
+      required: true,
+    },
+    client: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Client",
+      required: true,
+    },
+    applicants: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Freelancer",
+      },
+    ],
     visibility: {
       type: String,
       enum: ["Public", "Private", "Invite-only"],

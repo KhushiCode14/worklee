@@ -24,7 +24,7 @@ const RegisterController = async (req, res) => {
     });
     await user.save();
     console.log({ message: "User registered successfully" });
-    res.status(201).json({ message: "User registered successfully" });
+    res.status(201).json({ message: "User registered successfully", user });
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: "Error: " + error.message });
