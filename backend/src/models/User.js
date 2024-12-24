@@ -59,6 +59,9 @@ const userSchema = new Schema({
   dob: {
     type: Date,
   },
+  phone: {
+    type: Number,
+  },
   isActive: {
     type: Boolean,
     default: true,

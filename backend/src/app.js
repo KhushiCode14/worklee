@@ -19,5 +19,5 @@ console.log("app run");
 app.use("/auth", AuthRoutes);
 app.use("/client", ClientRoutes);
 app.use("/freelancer", FreelancerRoutes);
-app.use("/api", JobRoutes);
+app.use("/job", JobRoutes);
 export default app;

@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import bcrypt from "bcryptjs";
 import Client from "../models/Client.js";
 import mongoose from "mongoose";
 
@@ -93,5 +94,87 @@ const GetSingleClient = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+const UpdateClientProfile = async (req, res) => {
+  const { id } = req.params;
 
-export { CreateClient, GetSingleClient };
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid User ID format" });
+    }
+
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (user.role !== "client") {
+      return res.status(403).json({ message: "User is not a client" });
+    }
+
+    const clientId = user.clientDetails;
+    if (!clientId) {
+      return res.status(404).json({ message: "Client details not found" });
+    }
+
+    const { companyName, name, email, password, phone } = req.body;
+
+    const updateData = {};
+    if (companyName) updateData.companyName = companyName;
+    if (name) updateData.name = name;
+    if (email) updateData.email = email;
+    if (phone) updateData.phone = phone;
+
+    if (password) {
+      const salt = await bcrypt.genSalt(10);
+      updateData.password = await bcrypt.hash(password, salt);
+    }
+
+    const client = await Client.findByIdAndUpdate(clientId, updateData, {
+      new: true,
+    });
+    if (!client) {
+      return res.status(404).json({ message: "Client not found" });
+    }
+
+    res.status(200).json({ message: "Client updated successfully", client });
+  } catch (error) {
+    console.error("Update error:", error.message);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+const DeleteClientProfile = async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    return res.status(400).json({ message: "Invalid client ID format" });
+  }
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid User ID format" });
+    }
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    if (user.role === "client") {
+      const client = await Client.findByIdAndDelete(user.clientDetails);
+      if (!client) {
+        return res.status(404).json({ message: "Client not found" });
+      }
+      user.clientDetails = null;
+      await user.save({ validate: false });
+    }
+    return res
+      .status(200)
+      .json({ message: "CLient profile deleted successfully", user: user });
+  } catch (error) {
+    console.log("error", error);
+    res.json({ message: "this is error message", error: error });
+  }
+};
+export {
+  CreateClient,
+  GetSingleClient,
+  UpdateClientProfile,
+  DeleteClientProfile,
+};

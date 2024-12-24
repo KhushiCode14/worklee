@@ -3,18 +3,17 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
+const BASE_URL = import.meta.env.BACKEND_INTEGRATION;
+
 // Async thunk to handle user login
 export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/auth/login", // Update with your API endpoint
-        credentials
-      );
-      return response.data; // return the response data
+      const response = await axios.post(`${BASE_URL}/login`, credentials); // Use the dynamic URL
+      return response.data; // Return the response data
     } catch (error) {
-      return rejectWithValue(error.response.data); // return error message from the server
+      return rejectWithValue(error.response.data); // Return error message from the server
     }
   }
 );
