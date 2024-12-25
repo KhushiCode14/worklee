@@ -6,6 +6,7 @@ export const Button = ({
   variant = "default",
   className = "",
   links,
+  type,
   ...props
 }) => {
   const baseClasses =
@@ -31,6 +32,7 @@ export const Button = ({
 
   return (
     <button
+      type={type || "button"}
       className={`${baseClasses} ${variantClasses[variant]} ${className}`}
       {...props}
     >
@@ -46,10 +48,10 @@ Button.propTypes = {
   className: PropTypes.string, // Ensures `className` is a string
   // Validates any additional props passed to the button
   links: PropTypes.string,
+  type: PropTypes.string,
   onClick: PropTypes.func, // Ensures `onClick` is a function, if provided
 };
 
 Button.defaultProps = {
-  variant: "default",
-  className: "",
+  type: "button",
 };

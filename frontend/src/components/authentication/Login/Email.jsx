@@ -1,24 +1,25 @@
 import { Formik, Form, Field } from "formik";
-import { FaLock } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
 
-const Password = ({ email, onSubmit }) => {
+const Email = ({ onSubmit }) => {
   return (
-    <Formik initialValues={{ password: "" }} onSubmit={onSubmit}>
+    <Formik initialValues={{ email: "" }} onSubmit={onSubmit}>
       {() => (
         <Form className="flex flex-col items-center justify-center h-full max-w-md gap-5 p-10 mx-auto mt-10 border border-gray-300 rounded-lg shadow-lg">
           <h2 className="text-xl font-semibold text-center">
-            Enter your Password
+            Enter your Email
           </h2>
           <div className="flex items-center w-full overflow-hidden border border-gray-300 rounded-lg">
             <span className="flex items-center justify-center p-2 bg-gray-200">
-              <FaLock className="text-gray-600" />
+              <FaEnvelope className="text-gray-600" />
             </span>
             <Field
-              type="password"
-              name="password"
-              id="password"
+              type="email"
+              name="email"
+              id="email"
               className="flex-1 p-2 bg-gray-200 border-none outline-none"
-              placeholder="Password"
+              placeholder="Email"
+              required
             />
           </div>
           <div className="w-full">
@@ -27,7 +28,7 @@ const Password = ({ email, onSubmit }) => {
                 type="submit"
                 className="flex-1 p-2 text-white bg-green-600 hover:bg-green-700 active:bg-green-800"
               >
-                Log In
+                Next
               </button>
             </div>
           </div>
@@ -37,4 +38,4 @@ const Password = ({ email, onSubmit }) => {
   );
 };
 
-export default Password;
+export default Email;

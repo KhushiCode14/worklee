@@ -3,27 +3,63 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import config from "../config/config.js";
 const RegisterController = async (req, res) => {
-  console.log(req.body);
-  const { name, email, password, role } = req.body;
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    role,
+    country,
+    state,
+    city,
+    street,
+    zip,
+    dob,
+    phone,
+  } = req.body;
+
   try {
-    if (!email || !password) {
+    // Validate fields
+    if (
+      !email ||
+      !password ||
+      !firstName ||
+      !lastName ||
+      !country ||
+      !state ||
+      !city ||
+      !street ||
+      !zip ||
+      !dob ||
+      !phone
+    ) {
       return res.status(400).json({ message: "All fields are required" });
     }
+
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "Email already exists" });
     }
+
     // Hash the password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
-      name,
+      firstName,
+      lastName,
       email,
       password: hashedPassword,
       role,
+      country,
+      state,
+      city,
+      street,
+      zip,
+      dob,
+      phone,
     });
+
     await user.save();
-    console.log({ message: "User registered successfully" });
     res.status(201).json({ message: "User registered successfully", user });
   } catch (error) {
     console.log(error);

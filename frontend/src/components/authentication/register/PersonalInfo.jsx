@@ -1,18 +1,57 @@
 import { FaApple, FaEye, FaGoogle } from "react-icons/fa6";
-import Nav from "../../ui/Nav";
-import { IoIosArrowDown } from "react-icons/io";
+// import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { Input } from "../../ui/Input";
+// import { Input } from "../../ui/Input";
+import { Field, Form, Formik } from "formik";
+import PropTypes from "prop-types";
+import { useState } from "react";
+import * as Yup from "yup";
+import { setPersonalInfo } from "../../../redux/slices/registrationSlice";
+import { useDispatch } from "react-redux";
+
+const validationSchema = Yup.object({
+  firstName: Yup.string().required("First name is required"),
+  lastName: Yup.string().required("Last name is required"),
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+  country: Yup.string().required("Country is required"),
+});
+
 const buttonStyles =
   "flex-1 p-2 font-medium transition duration-200 rounded-lg outline-none cursor-pointer";
-const PersonalInfo = () => {
+
+const PersonalInfo = ({ onSubmit }) => {
+  console.log("submit form", onSubmit);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    dispatch(setPersonalInfo(values));
+    setSubmitting(false);
+    navigate("/auth/contactInfo");
+  };
+
   return (
-    <section className="min-h-screen ">
-      <nav>
-        <Nav />
-      </nav>
-      <main className="flex flex-col items-center justify-center h-full max-w-3xl gap-8 px-20 mx-auto mt-10 max-sm:px-5">
+    <Formik
+      className="min-h-screen "
+      initialValues={{
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        country: "",
+      }}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      <Form className="flex flex-col items-center justify-center h-full max-w-3xl gap-8 px-20 mx-auto mt-10 max-sm:px-5">
         <h1 className="text-3xl font-medium text-gray-900 text-nowrap max-md:text-base">
           Sign up to find work you love
         </h1>
@@ -37,71 +76,95 @@ const PersonalInfo = () => {
             </button>
           </div>
         </div>
-        <div className="divider text-neutral-content divider-neutral ">or</div>
+
+        <div className="divider text-neutral-content divider-neutral">or</div>
+
         <div className="w-full">
           <div className="flex items-center justify-between w-full gap-3">
             <div>
-              <label htmlFor="Name" className="text-black">
+              <label htmlFor="firstName" className="text-black">
                 First Name
               </label>
-              <Input
+              <Field
+                id="firstName"
+                name="firstName"
                 type="text"
                 className="w-full bg-white border-2 border-gray-300 label Input"
               />
             </div>
             <div>
-              <label htmlFor="Name" className="text-black">
+              <label htmlFor="lastName" className="text-black">
                 Last Name
               </label>
-              <Input
+              <Field
+                id="lastName"
+                name="lastName"
                 type="text"
                 className="w-full bg-white border-2 border-gray-300 label Input"
               />
             </div>
           </div>
+
           <div>
             <label htmlFor="email" className="text-black">
               Email
             </label>
-            <Input
+            <Field
+              id="email"
               type="email"
+              name="email"
               className="w-full bg-white border-2 border-gray-300 label Input"
             />
           </div>
+
           <div>
-            <label htmlFor="email" className="text-black">
+            <label htmlFor="password" className="text-black">
               Password
             </label>
-            <label
-              htmlFor=""
-              className="w-full bg-white border-2 border-gray-300 label Input"
-            >
-              <Input type="email" />
-              <FaEye color="black" />
-            </label>
+            <div className="relative">
+              <Field
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                className="w-full bg-white border-2 border-gray-300 label Input"
+              />
+              <FaEye
+                onClick={togglePasswordVisibility}
+                className="absolute transform -translate-y-1/2 cursor-pointer right-3 top-1/2"
+                color="black"
+              />
+            </div>
           </div>
-          {/* dropdown */}
+
+          {/* Country Dropdown */}
           <div>
-            <label htmlFor="email" className="text-black">
-              Password
+            <label htmlFor="country" className="text-black">
+              Country
             </label>
-            <label
-              htmlFor=""
+            <Field
+              id="country"
+              name="country"
+              as="select"
               className="w-full bg-white border-2 border-gray-300 label Input"
             >
-              <Input type="email" />
-              <IoIosArrowDown color="black" />
-            </label>
+              <option value="">Select Country</option>
+              <option value="USA">USA</option>
+              <option value="Canada">Canada</option>
+              {/* Add more countries as needed */}
+            </Field>
           </div>
         </div>
+
         <div>
           <button
             className={`${buttonStyles} w-full text-white bg-green-600 hover:bg-green-700 active:bg-green-800`}
+            type="submit"
             onClick={() => navigate("/auth/contactInfo")}
           >
             Create an Account
           </button>
         </div>
+
         <div>
           <p className="text-center text-gray-600">
             Already have an Upwork account?{" "}
@@ -110,9 +173,30 @@ const PersonalInfo = () => {
             </a>
           </p>
         </div>
-      </main>
-    </section>
+      </Form>
+    </Formik>
   );
+};
+// firstName: "",
+// lastName: "",
+// email: "",
+// password: "",
+// country: "",
+// phone: "",
+// address: "",
+PersonalInfo.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  navigate: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  setPersonalInfo: PropTypes.func.isRequired,
+  showPassword: PropTypes.bool.isRequired,
+  togglePasswordVisibility: PropTypes.func.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  country: PropTypes.string,
+  phone: PropTypes.string,
 };
 
 export default PersonalInfo;

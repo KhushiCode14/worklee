@@ -9,18 +9,22 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  name: {
+  firstName: {
     type: String,
-    // required: true,
+    required: true, // Required
+  },
+  lastName: {
+    type: String,
+    required: true, // Required
   },
   email: {
     type: String,
-    // required: true,
+    required: true, // Required
     unique: true,
   },
   password: {
     type: String,
-    // required: true,
+    required: true, // Required
   },
   role: {
     type: String,
@@ -30,37 +34,40 @@ const userSchema = new Schema({
   freelancerDetails: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Freelancer",
-    required: function () {
-      return this.role === "freelancer";
-    }, // Conditionally required based on role
+    // Don't require this during registration, will be populated later if the role is "freelancer"
   },
   clientDetails: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Client",
-    // required: function () {
-    //   return this.role === "client";
-    // }, // Conditionally required based on role
+    // Don't require this during registration, will be populated later if the role is "client"
   },
   country: {
     type: String,
+    required: true, // Required
   },
   state: {
     type: String,
+    required: true, // Required
   },
   city: {
     type: String,
+    required: true, // Required
   },
-  streetAddress: {
+  street: {
     type: String,
+    required: true, // Required
   },
   zip: {
     type: Number,
+    required: true, // Required
   },
   dob: {
     type: Date,
+    required: true, // Required
   },
   phone: {
     type: Number,
+    required: true, // Required
   },
   isActive: {
     type: Boolean,

@@ -1,11 +1,13 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import authReducer from "../slices/authSlice";
-// import jobReducer from "../slices/jobSlices";
 import counterReducer from "../slices/countSlice";
+import registerReducer from "../slices/registrationSlice";
+// import jobReducer from "../slices/jobSlices";
 const rootReducer = combineReducers({
   auth: authReducer,
-  // jobs: jobReducer,
-  counter: counterReducer, // Add your other slices here if needed
+  register: registerReducer,
+  // job: jobReducer,
+  counter: counterReducer,
 });
 
 export default rootReducer;

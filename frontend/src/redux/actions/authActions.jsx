@@ -1,12 +1,26 @@
-import axios from "axios";
-import { loginFailure, loginStart, loginSuccess } from "../slices/authSlice";
-export const login = (credentials) => async (dispatch) => {
-  dispatch(loginStart());
-  try {
-    const response = await axios.post("localhost:5000/auth/login", credentials);
-    localStorage.setItem("token", response.data.token);
-    dispatch(loginSuccess({ user: response.data.user, token: response.token }));
-  } catch (error) {
-    dispatch(loginFailure(error.response.data));
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import Auth from "../../api/apiClient";
+
+export const login = createAsyncThunk(
+  "auth/login",
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const response = await Auth.login(credentials);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
   }
-};
+);
+
+export const register = createAsyncThunk(
+  "auth/register",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await Auth.register(userData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);

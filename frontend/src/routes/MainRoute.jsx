@@ -23,6 +23,8 @@ import DynamicInput from "../components/project/DynamicInput";
 import ReactSelect from "../components/project/ReactSelect";
 import Counter from "../components/project/store/Counter";
 import FormHandle from "../components/project/formik/FormHandle";
+import Register from "../components/authentication/register/Register";
+import ViewProfile from "../components/authentication/ViewProfile";
 
 // Create the route configuration
 const router = createBrowserRouter([
@@ -50,8 +52,12 @@ const router = createBrowserRouter([
         element: <Password />,
       },
       {
-        path: "signup",
+        path: "role",
         element: <RoleSelection />,
+      },
+      {
+        path: "signup",
+        element: <Register />,
       },
       {
         path: "personalInfo",
@@ -60,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: "contactInfo",
         element: <ContactInfo />,
+      },
+      {
+        path: "viewprofile",
+        element: <ViewProfile />,
       },
       {
         path: "jobsearch",

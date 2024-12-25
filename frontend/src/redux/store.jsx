@@ -1,10 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import counterReducer from "./slices/countSlice";
 import rootReducer from "./reducers/rootReducer";
+
 const store = configureStore({
-  // Define your reducers here
   reducer: rootReducer,
-  // count: counterReducer,
+  devTools: import.meta.env.NODE_ENV !== "production",
 });
 
 export default store;
