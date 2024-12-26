@@ -6,7 +6,8 @@
      *  role  
      *  personalInfo
      *  contactInfo
-
+* freelancer profile
+* 
 ### In Progress
  
 

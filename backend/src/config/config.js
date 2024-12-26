@@ -6,6 +6,7 @@ console.log("Loaded Environment Variables:");
 
 const {
   MONGO_URL,
+  MONGO_SECOND_URL,
   API_KEY,
   JWT_SECRET,
   JWT_EXPIRATION_TIME,
@@ -21,6 +22,7 @@ if (!MONGO_URL || !JWT_SECRET || !JWT_EXPIRATION_TIME || !PORT) {
 
 const config = {
   mongo_url: MONGO_URL,
+  mongo_second_url: MONGO_SECOND_URL,
   api_key: API_KEY,
   jwt_secret: JWT_SECRET,
   jwt_expiration_time: JWT_EXPIRATION_TIME,
@@ -28,5 +30,6 @@ const config = {
   sender_password: NODEMAILER_SENDER_PASSWORD,
   port: PORT || 3000, // Default to 3000 if PORT is not provided
 };
+console.log(config);
 
 export default config;

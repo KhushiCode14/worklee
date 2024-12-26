@@ -31,13 +31,27 @@ const ViewProfile = ({ successMessage, error }) => {
       dob: "N/A",
     },
   } = registration || {}; // Fallback to empty object if registration is undefined
-  console.log(registration);
-  const handleRegister = () => {
-    // Dispatch the registration action
-    const registrationData = {
-      /* pass any required registration data */
-    };
-    dispatch(registerUser(registrationData));
+  console.log("registration state", registration);
+  const registrationData = {
+    firstName: personalInfo.firstName,
+    lastName: personalInfo.lastName,
+    email: personalInfo.email,
+    password: personalInfo.password,
+    country: personalInfo.country,
+    phone: contactInfo.phone,
+    role: role,
+    street: contactInfo.street,
+    city: contactInfo.city,
+    zip: contactInfo.zip,
+    state: contactInfo.state,
+    dob: contactInfo.dob,
+  };
+  console.log("before registrationData", registrationData);
+  const handleRegister = async () => {
+    // Create a data object to send to the backend
+
+    console.log("after registrationData", registrationData);
+    await dispatch(registerUser(registrationData));
   };
 
   return (

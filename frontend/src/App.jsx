@@ -1,12 +1,21 @@
 import { RouterProvider } from "react-router-dom";
-// import MainRoute from "./routes/MainRoute";
 import router from "./routes/MainRoute";
-// import MainRoute from "./routes/MainRoute";
-
+import "./App.css";
+import { useState } from "react";
 const App = () => {
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
   return (
-    <div className="">
-      <RouterProvider router={router} />
+    <div className="bg-white dark:bg-gray-900">
+      <div className={theme}>
+        <button onClick={toggleTheme}>
+          Switch to {theme === "light" ? "Dark" : "Light"} Mode
+        </button>
+        <RouterProvider router={router} />
+      </div>
     </div>
   );
 };

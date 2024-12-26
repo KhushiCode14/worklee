@@ -25,6 +25,7 @@ import Counter from "../components/project/store/Counter";
 import FormHandle from "../components/project/formik/FormHandle";
 import Register from "../components/authentication/register/Register";
 import ViewProfile from "../components/authentication/ViewProfile";
+import AuthLayout from "../components/layout/AuthLayout";
 
 // Create the route configuration
 const router = createBrowserRouter([
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
   // auth routes
   {
     path: "/auth",
+    element: <AuthLayout />,
     children: [
       {
         path: "login",

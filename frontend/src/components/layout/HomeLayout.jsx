@@ -6,10 +6,10 @@ import Footer from "../../pages/Footer";
 const HomeLayout = () => {
   // const scrollYProgress = useScroll();
   return (
-    <div className="flex flex-col min-h-screen ">
+    <div className="flex flex-col min-h-screen dark:bg-black dark:text-green-500">
       <Navbar />
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 dark:bg-black dark:text-green-500">
         <Outlet />
       </main>
       <Footer />

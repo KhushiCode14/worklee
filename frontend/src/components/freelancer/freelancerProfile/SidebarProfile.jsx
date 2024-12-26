@@ -2,7 +2,7 @@ import { jwtDecode } from "jwt-decode";
 import { useEffect } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { GoPencil } from "react-icons/go";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const SidebarProfile = () => {
   // const token = useSelector((state) => state.auth.token);
