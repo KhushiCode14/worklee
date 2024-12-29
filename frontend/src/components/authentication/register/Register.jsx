@@ -65,7 +65,12 @@ const Register = () => {
         "Registration successful! You can now view your profile."
       );
       setTimeout(() => {
-        navigate("/auth/viewprofile"); // Navigate to profile view after successful registration
+        if (role === "freelancer") {
+          navigate("/freelancer/step1");
+        } else {
+          navigate("/auth/viewprofile");
+        }
+        // Navigate to profile view after successful registration
       }, 2000); // Delay for a couple of seconds to show success message
     } catch (error) {
       console.error(

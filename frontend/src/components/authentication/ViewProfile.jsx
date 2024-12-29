@@ -4,11 +4,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../redux/slices/registrationSlice"; // Adjust the import path as needed
+import { useNavigate } from "react-router-dom";
 
 const ViewProfile = ({ successMessage, error }) => {
   // Access the Redux state
   const registration = useSelector((state) => state.register);
-
+  const navigate = useNavigate();
   // Log the state for debugging
   console.log("Redux State:", registration);
   const dispatch = useDispatch();
@@ -49,9 +50,17 @@ const ViewProfile = ({ successMessage, error }) => {
   console.log("before registrationData", registrationData);
   const handleRegister = async () => {
     // Create a data object to send to the backend
-
-    console.log("after registrationData", registrationData);
-    await dispatch(registerUser(registrationData));
+    try {
+      await dispatch(registerUser(registrationData));
+      if (role === "freelancer") {
+        navigate("/freelancer/step1");
+      } else {
+        navigate("client/profile");
+      }
+      console.log("after registrationData", registrationData);
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
   };
 
   return (

@@ -42,6 +42,7 @@ import FreelancerLanguage from "../components/freelancer/createAccountAsFreelanc
 import FreelancerDescription from "../components/freelancer/createAccountAsFreelancer/FreelancerDescription";
 import FreelancerHourlyRate from "../components/freelancer/createAccountAsFreelancer/FreelancerHourlyRate";
 import PreviewFreelancerProfile from "../components/freelancer/createAccountAsFreelancer/PreviewFreelancerProfile";
+import ExperienceComponent from "../components/project/FreelancerExperi";
 
 // Create the route configuration
 const router = createBrowserRouter([
@@ -114,6 +115,7 @@ const router = createBrowserRouter([
           <Greeting
             icon={BiAlarm}
             text="Congratulations, your account is created!"
+            links="/freelancer/step2"
           />
         ),
       },
@@ -127,6 +129,7 @@ const router = createBrowserRouter([
           <Greeting
             icon={BiAdjust}
             text={`Congratulations! your account is verified.\nRedirecting...`}
+            links="/freelancer/step4"
           />
         ),
       },
@@ -216,6 +219,7 @@ const router = createBrowserRouter([
   { path: "/formik", element: <FormHandle /> },
   { path: "/modal", element: <UploadModal /> },
   // if route not found
+  { path: "/expe", element: <ExperienceComponent /> },
   {
     path: "*",
     element: <h1 className="text-blue-600">Route not found</h1>,

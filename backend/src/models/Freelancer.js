@@ -11,9 +11,11 @@ const freelancerSchema = new Schema(
     },
 
     // Freelancer information
+    // freelancer title
     title: {
       type: String,
     },
+    // freelancer description
     description: {
       type: String,
     },
@@ -22,6 +24,7 @@ const freelancerSchema = new Schema(
       type: String,
       enum: ["published", "drafts"], // Add enum for status (example)
     },
+    // freelancerLanguage
     language: [
       {
         // Fixed typo
@@ -57,6 +60,20 @@ const freelancerSchema = new Schema(
         type: String,
       },
     ],
+    // hourlyRate
+    hourly_Rate: {
+      type: Number,
+    },
+    // FreelanceExperience
+    experience: {
+      type: String,
+      enum: ["new", "some-experience", "expert"],
+    },
+    jobGoal: {
+      type: String,
+      enum: ["extra money", "side money", "experience", "no goal"],
+    },
+    // FreelancerSkills
     skills: [{ type: String }], // Corrected the type from 'string' to 'String'
     portfolioLinks: [{ type: String }], // Corrected from 'portfolio' to 'portfolioLinks'
   },

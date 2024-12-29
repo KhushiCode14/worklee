@@ -3,9 +3,12 @@ import Icon from "./Icon";
 import { Input } from "./Input";
 import PropTypes from "prop-types";
 
-const Card2 = ({ icon, text, type = "radio", name }) => {
+const Card2 = ({ icon, text, type = "radio", name, onClick }) => {
   return (
-    <div className="flex flex-col w-full bg-white border rounded-lg shadow-xl min-w-64 min-h-60">
+    <div
+      className="flex flex-col w-full bg-white border rounded-lg shadow-xl min-w-64 min-h-60"
+      onClick={onClick}
+    >
       {/* Card Header */}
       <div className="flex items-start justify-center p-4 rounded-t-lg ">
         <div className="flex items-center justify-center flex-1 w-56 min-h-44">
@@ -33,6 +36,7 @@ Card2.propTypes = {
   text: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default Card2;

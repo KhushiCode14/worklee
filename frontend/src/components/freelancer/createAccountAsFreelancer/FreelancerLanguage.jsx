@@ -1,5 +1,5 @@
-12;
 import { useState } from "react";
+
 const FreelancerLanguage = () => {
   const [proficiencies, setProficiencies] = useState([
     { language: "English", proficiency: "Basic" },
@@ -25,47 +25,49 @@ const FreelancerLanguage = () => {
     updatedProficiencies[index].language = newLanguage;
     setProficiencies(updatedProficiencies);
   };
+
   return (
-    <section>
-      <div>
-        <h1 className="mb-8 text-3xl font-semibold text-black dark:text-black">
+    <section className="p-6">
+      <div className="mb-8">
+        <h1 className="text-3xl font-semibold text-black dark:text-green-500">
           Looking good. Next tell us which languages you speak
         </h1>
-        <span>
+        <p className="mt-2 text-gray-700 dark:text-gray-300">
           Upwork is global, so clients are often interested in freelancers who
           speak multiple languages. English is a must, but do you speak any
           other languages?
-        </span>
+        </p>
       </div>
+
       <div className="overflow-x-auto">
-        <table className="w-full border border-collapse border-gray-300 table-auto">
+        <table className="w-full table-auto ">
           <thead>
-            <tr className="text-gray-700 bg-gray-100">
-              <th className="px-4 py-2 border border-gray-300">Language</th>
-              <th className="px-4 py-2 border border-gray-300">Proficiency</th>
+            <tr className="text-gray-700 ">
+              <th className="px-4 py-2 ">Language</th>
+              <th className="px-4 py-2 ">Proficiency</th>
             </tr>
           </thead>
           <tbody>
             {proficiencies.map((item, index) => (
-              <tr key={index} className="text-center">
-                <td className="px-4 py-2 border border-gray-300">
+              <tr key={index} className="p-2 text-center ">
+                <td className="p-4 border-b border-gray-300 dark:border-gray-700">
                   <input
                     type="text"
                     value={item.language}
                     onChange={(e) =>
                       handleLanguageChange(index, e.target.value)
                     }
-                    className="w-full px-2 py-1 text-gray-700 bg-white border rounded focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                    className="w-full px-2 py-1 text-gray-700 bg-white border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-green-400 focus:outline-none"
                     placeholder="Enter language"
                   />
                 </td>
-                <td className="px-4 py-2 border border-gray-300">
+                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700">
                   <select
                     value={item.proficiency}
                     onChange={(e) =>
                       handleProficiencyChange(index, e.target.value)
                     }
-                    className="w-full px-2 py-1 text-gray-700 bg-white border rounded focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                    className="w-full px-2 py-1 text-gray-700 bg-white border rounded dark:bg-gray-700 dark:text-white dark:border-gray-600 focus:ring-2 focus:ring-green-400 focus:outline-none"
                   >
                     {levels.map((level) => (
                       <option key={level} value={level}>
@@ -78,9 +80,10 @@ const FreelancerLanguage = () => {
             ))}
           </tbody>
         </table>
+
         <button
           onClick={handleAddLanguage}
-          className="px-4 py-2 mt-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+          className="px-4 py-2 mt-4 font-bold text-white bg-green-500 rounded hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700"
         >
           Add Language
         </button>

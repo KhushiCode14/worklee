@@ -1,21 +1,34 @@
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/MainRoute";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const App = () => {
   const [theme, setTheme] = useState("light");
 
+  // Set the initial theme based on saved preference in localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+    document.documentElement.classList.add(savedTheme); // Apply to the root element
+  }, []);
+
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    document.documentElement.classList.remove("light", "dark"); // Remove the previous theme
+    document.documentElement.classList.add(newTheme); // Apply the new theme
+    localStorage.setItem("theme", newTheme); // Save the theme preference
   };
+
   return (
-    <div className="bg-white dark:bg-gray-900">
-      <div className={theme}>
-        <button onClick={toggleTheme}>
-          Switch to {theme === "light" ? "Dark" : "Light"} Mode
-        </button>
-        <RouterProvider router={router} />
-      </div>
+    <div className="min-h-screen">
+      <button
+        onClick={toggleTheme}
+        className="font-semibold text-black rounded-full dark:bg-gray-300"
+      >
+        Switch to {theme === "light" ? "Dark" : "Light"} Mode
+      </button>
+      <RouterProvider router={router} />
     </div>
   );
 };
