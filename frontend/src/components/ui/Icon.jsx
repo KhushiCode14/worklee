@@ -4,12 +4,11 @@ const Icon = ({
   icon: IconComponent,
   variant = "solid",
   className = "",
-  //   text = "text-52",
   ...props
 }) => {
   const baseClasses = "font-medium text-base";
   const variantClasses = {
-    solid: "text-pink-900 ",
+    solid: "text-green-500 ",
     outline: "text-gray-400",
   };
 
@@ -23,13 +22,10 @@ const Icon = ({
   );
 };
 
-// Define PropTypes for the Icon component
 Icon.propTypes = {
-  icon: PropTypes.func.isRequired, // The icon component should be a function
-  variant: PropTypes.oneOf(["solid", "outline"]), // Allow "solid" or "outline" values for variant
-  className: PropTypes.string, // Optional className for extra styling
-  text: PropTypes.string,
-  //   height: PropTypes.string,
+  icon: PropTypes.elementType.isRequired, // Ensure it's a React component
+  variant: PropTypes.oneOf(["solid", "outline"]),
+  className: PropTypes.string,
 };
 
 export default Icon;

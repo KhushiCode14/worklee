@@ -30,6 +30,6 @@ const config = {
   sender_password: NODEMAILER_SENDER_PASSWORD,
   port: PORT || 3000, // Default to 3000 if PORT is not provided
 };
-console.log(config);
+// console.log(config);
 
 export default config;

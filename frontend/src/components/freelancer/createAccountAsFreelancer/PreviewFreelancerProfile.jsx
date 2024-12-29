@@ -4,7 +4,7 @@
 // import React from "react";
 
 const PreviewFreelancerProfile = () => {
-  return <div></div>;
+  return <section></section>;
 };
 
 export default PreviewFreelancerProfile;

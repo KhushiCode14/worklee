@@ -13,7 +13,7 @@ const ConnectDb = async () => {
       await mongoose.connect(config.mongo_second_url);
       console.log("Connected to MongoDB primary database");
     } catch (primaryError) {
-      console.warn("Primary MongoDB connection failed:", primaryError.message);
+      console.warn("Primary MongoDB connection failed:", primaryError);
       try {
         await mongoose.connect(config.mongo_second_url);
         console.log("Connected to MongoDB secondary database");

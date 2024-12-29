@@ -26,6 +26,22 @@ import FormHandle from "../components/project/formik/FormHandle";
 import Register from "../components/authentication/register/Register";
 import ViewProfile from "../components/authentication/ViewProfile";
 import AuthLayout from "../components/layout/AuthLayout";
+import Greeting from "../components/freelancer/createAccountAsFreelancer/Greeting";
+// import { IdCard, IdCardIcon } from "lucide-react";
+import { BiAdjust, BiAlarm } from "react-icons/bi";
+import GetStarted from "../components/freelancer/createAccountAsFreelancer/GetStarted";
+import FreelanceExperience from "../components/freelancer/createAccountAsFreelancer/FreelanceExperience";
+import FreelanceGoal from "../components/freelancer/createAccountAsFreelancer/FreelanceGoal";
+import UploadResumeAndLinks from "../components/freelancer/createAccountAsFreelancer/UploadResumeAndLinks";
+import FreelancerSkill from "../components/freelancer/createAccountAsFreelancer/FreelancerSkill";
+import Category from "../components/freelancer/createAccountAsFreelancer/Category";
+import UploadModal from "../components/ui/modal/UploadModal";
+import FreelancerTitle from "../components/freelancer/createAccountAsFreelancer/FreelancerTitle";
+import WorkExperienceFreelancer from "../components/freelancer/createAccountAsFreelancer/WorkExperienceFreelancer";
+import FreelancerLanguage from "../components/freelancer/createAccountAsFreelancer/FreelancerLanguage";
+import FreelancerDescription from "../components/freelancer/createAccountAsFreelancer/FreelancerDescription";
+import FreelancerHourlyRate from "../components/freelancer/createAccountAsFreelancer/FreelancerHourlyRate";
+import PreviewFreelancerProfile from "../components/freelancer/createAccountAsFreelancer/PreviewFreelancerProfile";
 
 // Create the route configuration
 const router = createBrowserRouter([
@@ -92,6 +108,79 @@ const router = createBrowserRouter([
         path: "profile",
         element: <FreelancerProfile />,
       },
+      {
+        path: "step1",
+        element: (
+          <Greeting
+            icon={BiAlarm}
+            text="Congratulations, your account is created!"
+          />
+        ),
+      },
+      {
+        path: "step2",
+        element: <GetStarted />,
+      },
+      {
+        path: "step3",
+        element: (
+          <Greeting
+            icon={BiAdjust}
+            text={`Congratulations! your account is verified.\nRedirecting...`}
+          />
+        ),
+      },
+      {
+        path: "step4",
+        element: <FreelanceExperience />,
+      },
+      {
+        path: "step5",
+        element: <FreelanceGoal />,
+      },
+      {
+        path: "step6",
+        element: <UploadResumeAndLinks />,
+      },
+      {
+        path: "step7",
+        element: <Category />,
+      },
+      // skills
+      {
+        path: "step8",
+        element: <FreelancerSkill />,
+      },
+      // title
+      {
+        path: "step9",
+        element: <FreelancerTitle />,
+      },
+      // experiecnce
+      {
+        path: "step10",
+        element: <WorkExperienceFreelancer />,
+      },
+      // language
+      {
+        path: "step11",
+        element: <FreelancerLanguage />,
+      },
+      // description
+      {
+        path: "step12",
+        element: <FreelancerDescription />,
+      },
+      // hourly rate
+      {
+        path: "step13",
+        element: <FreelancerHourlyRate />,
+      },
+      // preview profile
+      {
+        path: "previewProfile",
+        element: <PreviewFreelancerProfile />,
+      },
     ],
   },
   // jobs routes
@@ -125,6 +214,7 @@ const router = createBrowserRouter([
   { path: "/input", element: <ReactSelect /> },
   { path: "/count", element: <Counter /> },
   { path: "/formik", element: <FormHandle /> },
+  { path: "/modal", element: <UploadModal /> },
   // if route not found
   {
     path: "*",
