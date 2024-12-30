@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
 function ProgressBar({
@@ -5,6 +6,7 @@ function ProgressBar({
   nextButtonText = "Next", // Default text for next button
   backLink, // Path to navigate back
   nextLink, // Path to navigate forward
+  children, // Additional content to display above the sticky footer
 }) {
   const navigate = useNavigate();
 
@@ -25,6 +27,7 @@ function ProgressBar({
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Content Section */}
+      {children && <div className="flex-grow">{children}</div>}
 
       {/* Sticky Footer Buttons */}
       <div className="sticky bottom-0 z-10 flex items-center justify-between px-4 py-4 bg-white border-t-2 border-gray-300">
@@ -47,5 +50,21 @@ function ProgressBar({
     </div>
   );
 }
+
+ProgressBar.propTypes = {
+  backButtonText: PropTypes.string,
+  nextButtonText: PropTypes.string,
+  backLink: PropTypes.string,
+  nextLink: PropTypes.string,
+  children: PropTypes.node, // Allows passing any React nodes for the content section
+};
+
+ProgressBar.defaultProps = {
+  backButtonText: "Back",
+  nextButtonText: "Next",
+  backLink: null,
+  nextLink: null,
+  children: null,
+};
 
 export default ProgressBar;

@@ -4,14 +4,15 @@ import ProgressBar from "./ProgressBar";
 const FreelancerHourlyRate = () => {
   return (
     <section className="w-full p-6 bg-white dark:bg-gray-900">
-      <Card />
       {/* Progress Bar */}
       <ProgressBar
         backButtonText="Go Back"
         nextButtonText="Proceed"
         backLink="/freelancer/step12"
         nextLink="/freelancer/previewProfile"
-      />
+      >
+        <Card />
+      </ProgressBar>
     </section>
   );
 };

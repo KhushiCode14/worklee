@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import FindTalent from "../components/Navbar/FindTalent";
+// import FindTalent from "../components/Navbar/FindTalent";
 import FindWork from "../components/Navbar/FindWork";
 import { Button } from "../components/ui/Button";
 import { Link } from "react-router-dom";
@@ -111,11 +111,11 @@ const Navbar = () => {
                 <span className="mr-2">{labels[key]}</span>
                 {dropdowns[key] ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
-              {dropdowns[key] && key === "talent" && (
+              {/* {dropdowns[key] && key === "talent" && (
                 <div className="absolute left-0 h-auto bg-white rounded-lg shadow-lg top-full">
                   <FindTalent />
                 </div>
-              )}
+              )} */}
               {dropdowns[key] && key === "work" && (
                 <div className="absolute left-0 bg-white rounded-lg shadow-lg top-full">
                   <FindWork />

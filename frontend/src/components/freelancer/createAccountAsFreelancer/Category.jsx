@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ProgressBar from "./ProgressBar";
 
 7;
 
@@ -47,66 +48,73 @@ const Category = () => {
   };
 
   return (
-    <div className="flex flex-col justify-between min-h-screen">
-      <main className="flex flex-col items-center flex-grow p-6">
-        <div className="w-full max-w-4xl">
-          <div className="mb-2 text-sm text-gray-500">2/10</div>
-          <h1 className="mb-2 text-3xl font-semibold">
-            Great, so what kind of work are you here to do?
-          </h1>
-          <p className="mb-6 text-gray-500">
-            Don&apos;t worry, you can change these choices later on.
-          </p>
-          <div className="mb-6 border-t border-gray-300"></div>
-          <div className="flex">
-            <div className="w-1/2 pr-4">
-              <p className="mb-2 text-gray-500">Select 1 category</p>
-              <ul className="space-y-2">
-                {categories.map((category) => (
-                  <li
-                    key={category}
-                    className={`cursor-pointer p-2 rounded ${
-                      selectedCategory === category
-                        ? "bg-green-100 font-semibold"
-                        : "hover:bg-gray-100"
-                    }`}
-                    onClick={() => handleCategorySelect(category)}
-                  >
-                    {category}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="w-1/2 pl-4">
-              <p className="mb-2 text-gray-500">
-                Now, select 1 to 3 specialties
-              </p>
-              {selectedCategory && specialties[selectedCategory] ? (
+    <ProgressBar
+      backButtonText="Go Back"
+      nextButtonText="Proceed"
+      backLink="/freelancer/step6"
+      nextLink="/freelancer/step8"
+    >
+      <div className="flex flex-col justify-between min-h-screen">
+        <main className="flex flex-col items-center flex-grow p-6">
+          <div className="w-full max-w-4xl">
+            <div className="mb-2 text-sm text-gray-500">2/10</div>
+            <h1 className="mb-2 text-3xl font-semibold">
+              Great, so what kind of work are you here to do?
+            </h1>
+            <p className="mb-6 text-gray-500">
+              Don&apos;t worry, you can change these choices later on.
+            </p>
+            <div className="mb-6 border-t border-gray-300"></div>
+            <div className="flex">
+              <div className="w-1/2 pr-4">
+                <p className="mb-2 text-gray-500">Select 1 category</p>
                 <ul className="space-y-2">
-                  {specialties[selectedCategory].map((specialty) => (
+                  {categories.map((category) => (
                     <li
-                      key={specialty}
+                      key={category}
                       className={`cursor-pointer p-2 rounded ${
-                        selectedSpecialties.includes(specialty)
+                        selectedCategory === category
                           ? "bg-green-100 font-semibold"
                           : "hover:bg-gray-100"
                       }`}
-                      onClick={() => handleSpecialtyToggle(specialty)}
+                      onClick={() => handleCategorySelect(category)}
                     >
-                      {specialty}
+                      {category}
                     </li>
                   ))}
                 </ul>
-              ) : (
-                <p className="text-gray-500">
-                  Select a category to see options
+              </div>
+              <div className="w-1/2 pl-4">
+                <p className="mb-2 text-gray-500">
+                  Now, select 1 to 3 specialties
                 </p>
-              )}
+                {selectedCategory && specialties[selectedCategory] ? (
+                  <ul className="space-y-2">
+                    {specialties[selectedCategory].map((specialty) => (
+                      <li
+                        key={specialty}
+                        className={`cursor-pointer p-2 rounded ${
+                          selectedSpecialties.includes(specialty)
+                            ? "bg-green-100 font-semibold"
+                            : "hover:bg-gray-100"
+                        }`}
+                        onClick={() => handleSpecialtyToggle(specialty)}
+                      >
+                        {specialty}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-500">
+                    Select a category to see options
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
+    </ProgressBar>
   );
 };
 

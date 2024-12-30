@@ -116,6 +116,8 @@ const router = createBrowserRouter([
             icon={BiAlarm}
             text="Congratulations, your account is created!"
             links="/freelancer/step2"
+            nextLink="/freelancer/step2"
+            backLink="/freelancer/"
           />
         ),
       },
@@ -130,6 +132,8 @@ const router = createBrowserRouter([
             icon={BiAdjust}
             text={`Congratulations! your account is verified.\nRedirecting...`}
             links="/freelancer/step4"
+            nextLink="/freelancer/step4"
+            backLink="/freelancer/step2"
           />
         ),
       },
