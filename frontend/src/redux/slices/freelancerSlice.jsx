@@ -6,9 +6,14 @@ const freelancerSlice = createSlice({
   initialState: {
     experience: "",
     goal: "",
-    skills: "",
+    category: "",
+    title: "",
+    subcategories: [],
+    skills: [],
     languages: [],
-    hourly_Rate: "",
+    description: "",
+    hourlyRate: 0,
+    youget: 0,
   },
   reducers: {
     setExperience(state, action) {
@@ -17,6 +22,19 @@ const freelancerSlice = createSlice({
     setGoal(state, action) {
       state.goal = action.payload;
     },
+    setCategory(state, action) {
+      state.category = action.payload; // Set category (it can be an empty string too)
+      state.subcategories = []; // Reset subcategories when category changes
+    },
+    setSubcategories(state, action) {
+      state.subcategories = action.payload; // Set subcategories (it can be an empty array too)
+    },
+    setDescription(state, action) {
+      state.description = action.payload;
+    },
+    setTitle(state, action) {
+      state.title = action.payload;
+    },
     setSkills(state, action) {
       state.skills = action.payload;
     },
@@ -24,7 +42,10 @@ const freelancerSlice = createSlice({
       state.languages = action.payload;
     },
     setHourlyRate(state, action) {
-      state.hourly_Rate = action.payload;
+      state.hourlyRate = action.payload;
+    },
+    setYouGet(state, action) {
+      state.youget = action.payload;
     },
   },
 });
@@ -34,7 +55,12 @@ export const {
   setGoal,
   setSkills,
   setLanguages,
+  setCategory,
+  setSubcategories,
   setHourlyRate,
+  setDescription,
+  setTitle,
+  setYouGet,
 } = freelancerSlice.actions;
 
 export default freelancerSlice.reducer;

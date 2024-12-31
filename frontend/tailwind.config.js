@@ -4,6 +4,7 @@ import daisyui from "daisyui";
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "media",
   theme: {
     extend: {
       fontFamily: {
@@ -27,5 +28,5 @@ export default {
     },
   },
   plugins: [daisyui],
-  darkMode: "class",
+  // darkMode: "class",
 };

@@ -43,6 +43,7 @@ import FreelancerDescription from "../components/freelancer/createAccountAsFreel
 import FreelancerHourlyRate from "../components/freelancer/createAccountAsFreelancer/FreelancerHourlyRate";
 import PreviewFreelancerProfile from "../components/freelancer/createAccountAsFreelancer/PreviewFreelancerProfile";
 import ExperienceComponent from "../components/project/FreelancerExperi";
+import AccountCreate from "../components/freelancer/createAccountAsFreelancer/AccountCreate";
 
 // Create the route configuration
 const router = createBrowserRouter([
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+
   // auth routes
   {
     path: "/auth",
@@ -188,8 +190,13 @@ const router = createBrowserRouter([
         path: "previewProfile",
         element: <PreviewFreelancerProfile />,
       },
+      {
+        path: "create",
+        element: <AccountCreate />,
+      },
     ],
   },
+
   // jobs routes
   {
     path: "/job",

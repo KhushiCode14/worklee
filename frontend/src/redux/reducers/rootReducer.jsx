@@ -10,17 +10,22 @@ const rootReducer = (state, action) => {
     auth: authReducer,
     register: registerReducer,
     counter: counterReducer,
+    freelancer: freelancerReducer,
     // job: jobReducer,  // Uncomment if needed
   };
+
   // console.log(reducers);
   // Conditionally include freelancerReducer based on role
-  if (state && state.register && state.register.role === "freelancer") {
+  // state && state.register &&
+  if (state?.register?.role === "freelancer") {
     reducers = {
       ...reducers,
       freelancer: freelancerReducer,
     };
+    console.log("reducers freelancer: " + reducers);
     // console.log(reducers);
   }
+  console.log("reducers all: " + reducers);
 
   return combineReducers(reducers)(state, action);
 };

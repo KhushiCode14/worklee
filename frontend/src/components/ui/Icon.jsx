@@ -16,7 +16,7 @@ const Icon = ({
     <div>
       <IconComponent
         {...props}
-        className={` ${variantClasses[variant]} ${baseClasses} ${className}`}
+        className={`${variantClasses[variant]} ${baseClasses} ${className}`}
       />
     </div>
   );
@@ -26,6 +26,10 @@ Icon.propTypes = {
   icon: PropTypes.elementType.isRequired, // Ensure it's a React component
   variant: PropTypes.oneOf(["solid", "outline"]),
   className: PropTypes.string,
+};
+Icon.defaultProps = {
+  variant: "solid", // Default variant is 'solid'
+  className: "", // Default className is an empty string
 };
 
 export default Icon;

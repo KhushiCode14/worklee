@@ -1,9 +1,9 @@
 // import { FaAlignJustify } from "react-icons/fa";
-import Icon from "./Icon";
+// import Icon from "./Icon";
 import { Input } from "./Input";
 import PropTypes from "prop-types";
 
-const Card2 = ({ icon, text, type = "radio", name, onClick }) => {
+const Card2 = ({ text, type = "radio", name, onClick }) => {
   return (
     <div
       className="flex flex-col w-full bg-white border rounded-lg shadow-xl min-w-64 min-h-60"
@@ -12,7 +12,7 @@ const Card2 = ({ icon, text, type = "radio", name, onClick }) => {
       {/* Card Header */}
       <div className="flex items-start justify-center p-4 rounded-t-lg ">
         <div className="flex items-center justify-center flex-1 w-56 min-h-44">
-          <Icon icon={icon} className="text-gray-700 text-8xl" />
+          {/* <Icon icon={icon} className="text-gray-700 text-8xl" /> */}
         </div>
         {/* Radio Input Section */}
         <div className="p-2 pt-0">
@@ -32,7 +32,7 @@ const Card2 = ({ icon, text, type = "radio", name, onClick }) => {
   );
 };
 Card2.propTypes = {
-  icon: PropTypes.element.isRequired,
+  icon: PropTypes.element,
   text: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string,

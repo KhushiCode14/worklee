@@ -1,19 +1,21 @@
 import Card2 from "../../ui/Card2";
-import { FaRocket } from "react-icons/fa";
-import { IoGitCompareSharp } from "react-icons/io5";
-import { MdOutlineExplore } from "react-icons/md";
+// import { FaRocket } from "react-icons/fa";
+// import { IoGitCompareSharp } from "react-icons/io5";
+// import { MdOutlineExplore } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { setExperience } from "../../../redux/slices/freelancerSlice";
+// import { setExperience } from "../../../redux/slices/freelancerSlice";
 import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
+import { setExperience } from "../../../redux/slices/freelancerSlice";
 
 const FreelanceExperience = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handlesubmit = (values) => {
-    dispatch(setExperience(values.experience));
+    dispatch(setExperience(values.experience)); // Use Redux dispatch here
     console.log("Selected Experience:", values.experience);
+    console.log(values);
     navigate("/freelancer/step5");
   };
 
@@ -29,13 +31,12 @@ const FreelanceExperience = () => {
         onSubmit={handlesubmit}
         validate={(values) => {
           const errors = {};
-          if (!values.experience) {
-            errors.experience = "Please select an option.";
-          }
+          if (!values.experience)
+            errors.experience = "Please select an experience level.";
           return errors;
         }}
       >
-        {({ setFieldValue, errors, touched }) => (
+        {({ setFieldValue, errors, values, touched }) => (
           <Form className="flex flex-col items-center justify-center h-auto gap-8 px-4 py-8">
             {/* Header Section */}
             <div className="space-y-4 text-center">
@@ -51,19 +52,27 @@ const FreelanceExperience = () => {
             <div className="flex gap-2 max-sm:flex-wrap sm:flex max-sm:gap-4">
               <Card2
                 text="I am new to this"
-                icon={FaRocket}
+                // icon={FaRocket}
                 name="experience"
                 onClick={() => setFieldValue("experience", "new")}
+                className={
+                  values.experience === "new" ? "border-2 border-blue-500" : ""
+                }
               />
               <Card2
                 text="I have some experience"
-                icon={IoGitCompareSharp}
+                // icon={IoGitCompareSharp}
                 name="experience"
                 onClick={() => setFieldValue("experience", "some-experience")}
+                className={
+                  values.experience === "some-experience"
+                    ? "border-2 border-blue-500"
+                    : ""
+                }
               />
               <Card2
                 text="I am an expert"
-                icon={MdOutlineExplore}
+                // icon={MdOutlineExplore}
                 name="experience"
                 onClick={() => setFieldValue("experience", "expert")}
               />
@@ -75,7 +84,10 @@ const FreelanceExperience = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600"
+              className={`px-4 py-2 mt-4 text-white ${
+                values.experience ? "bg-blue-500" : "bg-gray-400"
+              } rounded hover:bg-blue-600`}
+              disabled={!values.experience}
             >
               Submit
             </button>

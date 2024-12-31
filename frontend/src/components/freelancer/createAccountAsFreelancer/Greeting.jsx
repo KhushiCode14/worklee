@@ -2,7 +2,7 @@
 
 import PropTypes from "prop-types";
 // import { Card } from "../../ui/Card";
-import Icon from "../../ui/Icon";
+// import Icon from "../../ui/Icon";
 import { Button } from "../../ui/button";
 import ProgressBar from "./ProgressBar";
 const Greeting = ({ icon, text, links, backLink, nextLink }) => {
@@ -17,7 +17,7 @@ const Greeting = ({ icon, text, links, backLink, nextLink }) => {
           nextLink={nextLink}
         >
           <div className="flex flex-col items-center justify-center flex-grow space-y-4">
-            <Icon icon={icon} className="text-green-600 text-9xl sm:text-8xl" />
+            {/* <Icon icon={icon} className="text-green-600 text-9xl sm:text-8xl" /> */}
             <p className="text-3xl font-semibold text-wrap sm:text-5xl">
               {text}
             </p>
