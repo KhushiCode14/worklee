@@ -24,11 +24,6 @@ const createFreelancer = async (req, res) => {
 
     // Destructure body for freelancer details
     const { title, skills, language } = req.body;
-    if (!title || !skills || !language) {
-      return res
-        .status(400)
-        .json({ message: "title, skills, and language are required" });
-    }
 
     // Check if a freelancer profile already exists for this user
     const existingFreelancer = await Freelancer.findOne({ user: user._id });
