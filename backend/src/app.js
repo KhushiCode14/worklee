@@ -8,7 +8,7 @@ import FreelancerRoutes from "./freelancer/freelancerRoutes.js";
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://www.localhost:5173"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "POST", "PUT", "DELETE"],

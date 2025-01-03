@@ -44,6 +44,8 @@ import FreelancerHourlyRate from "../components/freelancer/createAccountAsFreela
 import PreviewFreelancerProfile from "../components/freelancer/createAccountAsFreelancer/PreviewFreelancerProfile";
 import ExperienceComponent from "../components/project/FreelancerExperi";
 import AccountCreate from "../components/freelancer/createAccountAsFreelancer/AccountCreate";
+import JobTime from "../components/post/job/JobTime";
+import JobExperience from "../components/post/job/JobExperience";
 
 // Create the route configuration
 const router = createBrowserRouter([
@@ -218,6 +220,8 @@ const router = createBrowserRouter([
       { path: "title", element: <JobTitle /> },
       { path: "skills", element: <JobSkill /> },
       { path: "duration", element: <JobDuration /> },
+      { path: "time", element: <JobTime /> },
+      { path: "experience", element: <JobExperience /> },
       { path: "budget", element: <JobBudget /> },
       { path: "add-description", element: <JobDescription /> },
       { path: "review", element: <JobReview /> },

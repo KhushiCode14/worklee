@@ -23,7 +23,25 @@ const createFreelancer = async (req, res) => {
     }
 
     // Destructure body for freelancer details
-    const { title, skills, language } = req.body;
+    const {
+      title,
+      skills,
+      languages,
+      description,
+      totalEarning = 0,
+      totalHours = 0,
+      totalJobs = 0,
+      workHistory = [],
+      verification = false,
+      testimonials = [],
+      hourlyRate,
+      experience,
+      linkedAccounts,
+      jobGoal,
+      category = [],
+      subcategory = [],
+      portfolioLinks = [],
+    } = req.body;
 
     // Check if a freelancer profile already exists for this user
     const existingFreelancer = await Freelancer.findOne({ user: user._id });
@@ -38,7 +56,21 @@ const createFreelancer = async (req, res) => {
       user: user._id,
       title,
       skills,
-      language,
+      languages,
+      description,
+      totalEarning,
+      totalHours,
+      totalJobs,
+      workHistory,
+      verification,
+      testimonials,
+      hourlyRate,
+      experience,
+      jobGoal,
+      category,
+      subcategory,
+      linkedAccounts,
+      portfolioLinks,
     });
 
     await freelancer.save();

@@ -19,11 +19,11 @@ const freelancerSchema = new Schema(
     description: {
       type: String,
     },
-    portfolioStatus: {
-      // Renamed to clarify that it's for the status
-      type: String,
-      enum: ["published", "drafts"], // Add enum for status (example)
-    },
+    // portfolioStatus: {
+    //   // Renamed to clarify that it's for the status
+    //   type: String,
+    //   enum: ["published", "drafts"], // Add enum for status (example)
+    // },
     // freelancerLanguage
     languages: [
       {
@@ -33,7 +33,7 @@ const freelancerSchema = new Schema(
     ],
     linkedAccounts: {
       type: String,
-      unique: true, // Ensure linked accounts (like social media or freelance profiles) are unique
+      // unique: true, // Ensure linked accounts (like social media or freelance profiles) are unique
     },
     totalEarning: {
       type: Number,

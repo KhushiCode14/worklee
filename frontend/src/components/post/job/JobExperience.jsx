@@ -1,8 +1,9 @@
 import BackNext from "./BackNext";
-import ProjectScope from "./ProjectScope";
-const JobDuration = () => {
-  const backLink = "/job-post/skills";
-  const nextLink = "/job-post/time";
+import ProjectExperience from "./ProjectExperience";
+
+const JobExperience = () => {
+  const backLink = "/job-post/time";
+  const nextLink = "/job-post/budget";
   return (
     <div className="flex flex-col justify-between w-full h-screen p-6 lg:p-10">
       <div className="container flex flex-wrap items-center justify-center w-full max-w-6xl gap-24 px-4 py-10 mx-auto">
@@ -15,8 +16,8 @@ const JobDuration = () => {
           </p>
         </div>
         <div className="flex flex-col space-y-4">
-          <p className="text-black">Popular skills</p>
-          <ProjectScope />
+          <p className="text-black">How long will your work take</p>
+          <ProjectExperience />
         </div>
       </div>
       <BackNext value={48} backLink={backLink} nextLink={nextLink} />
@@ -24,4 +25,4 @@ const JobDuration = () => {
   );
 };
 
-export default JobDuration;
+export default JobExperience;

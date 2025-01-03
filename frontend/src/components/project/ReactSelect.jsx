@@ -1,5 +1,5 @@
 import Select from "react-select";
-import { useState } from "react";
+
 const options = [
   { value: "apple", label: "Apple" },
   { value: "banana", label: "Banana" },
@@ -8,14 +8,7 @@ const options = [
   { value: "elderberry", label: "Elderberry" },
 ];
 
-const ReactSelect = () => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
-
-  const handleChange = (selected) => {
-    setSelectedOptions(selected);
-    console.log("Selected options:", selected);
-  };
-
+const ReactSelect = ({ onChange, value }) => {
   return (
     <div className="flex flex-col">
       <Select
@@ -23,19 +16,11 @@ const ReactSelect = () => {
         isMulti
         className="react-select-container"
         classNamePrefix="react-select"
-        onChange={handleChange}
-        value={selectedOptions}
-        placeholder="Select your favorite fruits..."
+        onChange={onChange}
+        value={options.filter((option) => value.includes(option.value))}
+        placeholder="Select skills..."
         inputId="react-select"
       />
-      <div style={{ marginTop: "20px" }}>
-        <strong>Selected:</strong>
-        <ul>
-          {selectedOptions.map((option) => (
-            <li key={option.value}>{option.label}</li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 };

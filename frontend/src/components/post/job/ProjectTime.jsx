@@ -1,18 +1,24 @@
 // src/components/ProjectScope.jsx
 
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { setJobDetails } from "../../../redux/slices/jobSlices";
 import { Button } from "../../ui/Button";
+
 // Option Component
 function Option({ value, id, title, description }) {
   return (
     <div className="flex items-start space-x-3">
-      <Field type="radio" name="scope" value={value} id={id} className="mt-1" />
+      <Field
+        type="radio"
+        name="duration"
+        value={value}
+        id={id}
+        className="mt-1"
+      />
       <label htmlFor={id} className="grid gap-1 leading-none">
-        <div className="text-2xl font-medium text-black">{title}</div>
+        <div className="text-xl font-medium text-black">{title}</div>
         <div className="text-gray-700 text-md">{description}</div>
       </label>
     </div>
@@ -27,54 +33,43 @@ Option.propTypes = {
 };
 
 // Main Component
-export default function ProjectScope() {
+export default function ProjectTime() {
+  const dispatch = useDispatch();
+
   const options = [
     {
-      value: "large",
-      id: "large",
-      title: "Large",
+      value: "1to3months",
+      id: "1to3months",
+      title: "1 to 3 months",
       description:
         "Longer term or complex initiatives (e.g., develop and execute a brand strategy (graphics, positioning)).",
     },
     {
-      value: "medium",
-      id: "medium",
-      title: "Medium",
+      value: "3to6months",
+      id: "3to6months",
+      title: "3 to 6 months",
       description:
         "Well-defined projects (e.g., design business rebrand package (logos, icons)).",
     },
     {
-      value: "small",
-      id: "small",
-      title: "Small",
+      value: "morethan6months",
+      id: "morethan6months",
+      title: "More than 6 months",
       description:
         "Quick and straightforward tasks (e.g., create a logo for a new product).",
     },
   ];
 
-  // Validation schema
-  const validationSchema = Yup.object({
-    scope: Yup.string().required("Please select a project scope."),
-  });
+  const initialValues = { duration: "" };
 
-  // Initial values
-  const initialValues = { scope: "" };
-
-  // Submit handler
-  const dispatch = useDispatch();
-  const onSubmit = (values) => {
-    dispatch(setJobDetails({ scope: values.scope }));
-    console.log("Form data", values);
-    // alert(`You selected: ${values.projectScope}`);
+  const handleSubmit = (values) => {
+    dispatch(setJobDetails({ duration: values.duration }));
+    console.log("Submitted Duration:", values.duration);
   };
 
   return (
     <div className="w-full max-w-md p-6 mx-auto">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ errors, touched }) => (
           <Form className="space-y-6">
             {options.map((option) => (
@@ -86,8 +81,8 @@ export default function ProjectScope() {
                 description={option.description}
               />
             ))}
-            {errors.scope && touched.scope && (
-              <div className="text-sm text-red-500">{errors.scope}</div>
+            {errors.duration && touched.duration && (
+              <div className="text-sm text-red-500">{errors.duration}</div>
             )}
             <Button
               type="submit"

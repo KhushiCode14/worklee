@@ -1,7 +1,16 @@
 import { Formik, Form, Field } from "formik";
 import { FaLock } from "react-icons/fa";
+import PropTypes from "prop-types";
+import { jwtDecode } from "jwt-decode";
+const Password = ({ onSubmit }) => {
+  const token = localStorage.getItem("token");
 
-const Password = ({ email, onSubmit }) => {
+  // Optionally, if you want to decode the token:
+  if (token) {
+    const decodedToken = jwtDecode(token);
+    console.log(decodedToken); // Log decoded token
+    console.log(decodedToken);
+  }
   return (
     <Formik initialValues={{ password: "" }} onSubmit={onSubmit}>
       {() => (
@@ -36,5 +45,8 @@ const Password = ({ email, onSubmit }) => {
     </Formik>
   );
 };
-
+Password.propTypes = {
+  email: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
 export default Password;

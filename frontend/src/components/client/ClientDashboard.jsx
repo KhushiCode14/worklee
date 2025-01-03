@@ -48,7 +48,7 @@ const Dashboard = () => {
             <p className="mb-4 text-gray-600">
               Create a new job post and get proposals from talent.
             </p>
-            <Link to="/job-post">
+            <Link to="/job-post/title">
               <Button className="w-full">Post a job</Button>
             </Link>
           </Card>
